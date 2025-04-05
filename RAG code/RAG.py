@@ -113,7 +113,9 @@ def terminate_session(session_id):
 def get_chain(session_id):
     memory = get_session_memory(session_id)
     
-    retriever = vector_store.as_retriever(search_kwargs={"k": 2})
+    # Increase k to retrieve more documents - adjust this number based on your needs
+    # Using a higher number ensures more documents are considered
+    retriever = vector_store.as_retriever(search_kwargs={"k": 8})  # Increased from 2 to 8
     
     qa_chain = ConversationalRetrievalChain.from_llm(
         llm=model,
